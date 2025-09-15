@@ -4,11 +4,11 @@ import router from './router'
 import db from './config/db'
 
 // Conectar a base de datos
-async function conectDB() {
+export async function conectDB() {
     try {
         await db.authenticate()
         db.sync()
-        console.log(colors.blue.bold('Conexión exitosa a la DB'))
+        //console.log(colors.blue.bold('Conexión exitosa a la DB'))
     } catch (error) {
         console.log(error)
         console.log(colors.red.bold('Hubo un error al conectas la BD'))
@@ -24,5 +24,9 @@ const server = express()
 server.use(express.json())
 
 server.use('/api/products', router)
+
+server.get('/api', (req, res) => {
+    res.json({msg: 'Desde API'})
+})
 
 export default server

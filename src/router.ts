@@ -22,7 +22,7 @@ router.post('/',
 router.put('/:id', 
     param('id').isInt().withMessage('ID no válido'),
     body('name').notEmpty().withMessage('El nombre del Producto no puede ir vacío'),
-    body('price').isNumeric().withMessage('Ingresa un número válido').notEmpty().withMessage('El precio del Producto no puede ir vacío').custom(value => value > 0).withMessage('Precio nó valido'),
+    body('price').isNumeric().withMessage('Ingresa un número válido').notEmpty().withMessage('El precio del Producto no puede ir vacío').custom(value => value > 0).withMessage('Precio no válido'),
     body('availability').notEmpty().withMessage('Valor para disponibilidad no válido'),
     handleInputErrors,
     updateProduct)

@@ -1,5 +1,7 @@
 import express from 'express'
 import colors from 'colors'
+import swaggerUI from 'swagger-ui-express'
+import swaggerSpec from './config/swagger'
 import router from './router'
 import db from './config/db'
 
@@ -10,8 +12,9 @@ export async function conectDB() {
         db.sync()
         //console.log(colors.blue.bold('Conexión exitosa a la DB'))
     } catch (error) {
-        console.log(error)
-        console.log(colors.red.bold('Hubo un error al conectas la BD'))
+        // console.log(error)
+        // console.log(colors.red.bold('Hubo un error al conectas la BD'))
+        console.log('Unable to connect to the database:', error)
     }
 }
 
@@ -25,8 +28,6 @@ server.use(express.json())
 
 server.use('/api/products', router)
 
-server.get('/api', (req, res) => {
-    res.json({msg: 'Desde API'})
-})
+server.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec))
 
 export default server

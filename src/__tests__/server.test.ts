@@ -5,7 +5,7 @@ conectDB()
 
 describe('GET /api', () => {
     it('Should send back a json response', async () => {
-        const res = await request(server).get('/api')
+        const res = await request(server).get('/api/products')
         
         expect(res.status).toBe(200)
         expect(res.headers['content-type']).toMatch(/json/)
